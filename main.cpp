@@ -7,6 +7,10 @@
 #include <string>
 
 
+void DeletePunctuation(std::string& target) {
+    target.erase(remove_if(target.begin(), target.end(), ispunct), target.end());
+}
+
 // Функция, помогающая разделить слова по заданному символу
 std::vector<std::string> Split(const std::string& target, char delimiter) {
     // istringstream - удобное средство для просмотра строки без ее изменения
@@ -16,8 +20,10 @@ std::vector<std::string> Split(const std::string& target, char delimiter) {
     // Считали из строки до разделителя
     while (std::getline(iss, item, delimiter)) {
         // создаем вектор разделенных слов
+        DeletePunctuation(item);
         words.push_back(item);
     }
+
     return words;
 }
 
