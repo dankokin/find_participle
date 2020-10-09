@@ -8,7 +8,9 @@
 
 
 void DeletePunctuation(std::string& target) {
-    target.erase(remove_if(target.begin(), target.end(), ispunct), target.end());
+    target.erase(remove_if(target.begin(), target.end(), [](char w) {
+        return ispunct(static_cast<unsigned char>(w));
+    }), target.end());
 }
 
 // Функция, помогающая разделить слова по заданному символу
